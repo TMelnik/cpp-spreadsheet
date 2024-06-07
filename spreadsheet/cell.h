@@ -27,10 +27,17 @@ private:
     class EmptyImpl;
     class TextImpl;
     class FormulaImpl;
+    
+    // Добавлены методы
+    bool FindCircularDependency(const Impl& new_impl) const;
+    void RenewCache(bool force = false);
 
     std::unique_ptr<Impl> impl_;
+    Sheet& sheet_;
+    std::unordered_set<Cell*> left;
+    std::unordered_set<Cell*> right;
+
 
     // Добавьте поля и методы для связи с таблицей, проверки циклических 
     // зависимостей, графа зависимостей и т. д.
-
 };
